@@ -37,6 +37,20 @@ void append(struct Node **head_ref, int data) {
     last->next = new;
 }
 
+void insertAfter(struct Node *prev_node, int data) {
+    struct Node *new = (struct Node *) malloc(sizeof(struct Node));
+
+    if (prev_node == NULL) {
+        printf("Previous Node cannot be NULL");
+        return;
+    }
+
+    new->data = data;
+    new->next = prev_node->next;
+
+    prev_node->next = new;
+}
+
 void printList(struct Node *node) {
     while(node != NULL) {
         printf("%d, ", node->data);
@@ -54,8 +68,12 @@ int main() {
 
     append(&head, 10);
 
+    insertAfter(head->next, 11);
+
     printf("\n Created Linked list is: ");
 
     printList(head);
+
+    return 0;
 
 }
