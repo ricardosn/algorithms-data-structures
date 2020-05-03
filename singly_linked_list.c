@@ -102,7 +102,21 @@ void deleteByKey(struct Node **head_ref, int key) {
     free(tmp);
 }
 
+int listLength(struct Node **head_ref) {
+    struct Node *last = (*head_ref);
+    int cont = 0;
+
+    while(last != NULL) {
+        last = last->next;
+        cont++;
+    }
+
+    return cont;
+}
+
 void printList(struct Node *node) {
+    printf("\nCreated Linked list is: ");
+
     while(node != NULL) {
         printf("%d, ", node->data);
         node = node->next;
@@ -131,9 +145,11 @@ int main() {
 
     deleteAtPosition(&head, 2);
 
-    printf("\nCreated Linked list is: ");
-
     printList(head);
+
+    printf("\nList length is: %d", listLength(&head));
+
+    printf("\n");
 
     return 0;
 
