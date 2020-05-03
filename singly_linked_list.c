@@ -51,6 +51,32 @@ void insertAfter(struct Node *prev_node, int data) {
     prev_node->next = new;
 }
 
+void delete(struct Node **head_ref, int key) {
+    struct Node *tmp = (*head_ref);
+    struct Node *prev = (*head_ref);
+
+    if(tmp != NULL && tmp->data == key) {
+        *head_ref = tmp->next;
+        free(tmp);
+        return;
+    }
+
+    while(tmp != NULL && tmp->data != key) {
+        prev = tmp;
+        tmp = tmp->next;
+    }
+
+    // Reached the end of the list without finding the key
+    if(tmp == NULL) {
+        printf("\nKey:[%d] Not found.", key);
+        return;
+    }
+
+    prev->next = tmp->next;
+    free(tmp);
+
+}
+
 void printList(struct Node *node) {
     while(node != NULL) {
         printf("%d, ", node->data);
@@ -70,7 +96,11 @@ int main() {
 
     insertAfter(head->next, 11);
 
-    printf("\n Created Linked list is: ");
+    delete(&head, 8);
+
+    delete(&head, 31);
+
+    printf("\nCreated Linked list is: ");
 
     printList(head);
 
