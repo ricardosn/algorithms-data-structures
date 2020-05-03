@@ -51,7 +51,33 @@ void insertAfter(struct Node *prev_node, int data) {
     prev_node->next = new;
 }
 
-void delete(struct Node **head_ref, int key) {
+void deleteAtPosition(struct Node **head_ref, int position) {
+    struct Node *tmp = (*head_ref);
+    struct Node *prev = (*head_ref);
+    int i = 0;
+
+    if(tmp != NULL && position == 0) {
+        *head_ref = tmp->next;
+        free(tmp);
+        return;
+    }
+
+    while(tmp != NULL && position != i) {
+        prev = tmp;
+        tmp = tmp->next;
+        i++;
+    }
+
+    if(tmp == NULL) {
+        printf("\nPosition [%d] not found.", position);
+        return;
+    }
+
+    prev->next = tmp->next;
+    free(tmp);
+}
+
+void deleteByKey(struct Node **head_ref, int key) {
     struct Node *tmp = (*head_ref);
     struct Node *prev = (*head_ref);
 
@@ -68,13 +94,12 @@ void delete(struct Node **head_ref, int key) {
 
     // Reached the end of the list without finding the key
     if(tmp == NULL) {
-        printf("\nKey:[%d] Not found.", key);
+        printf("\nKey:[%d] not found.", key);
         return;
     }
 
     prev->next = tmp->next;
     free(tmp);
-
 }
 
 void printList(struct Node *node) {
@@ -94,11 +119,17 @@ int main() {
 
     append(&head, 10);
 
+    append(&head, 5);
+
+    append(&head, 6);
+
     insertAfter(head->next, 11);
 
-    delete(&head, 8);
+    deleteByKey(&head, 8);
 
-    delete(&head, 31);
+    deleteByKey(&head, 31);
+
+    deleteAtPosition(&head, 2);
 
     printf("\nCreated Linked list is: ");
 
