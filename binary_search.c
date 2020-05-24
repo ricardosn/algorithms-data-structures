@@ -28,7 +28,7 @@ int main() {
     const bool DEBUG = true;
     
     int arr[] = {2, 3, 4, 10, 40, 41, 42, 43, 44, 45};
-    int n = sizeof(arr) / sizeof(arr[0]); 
+    int n = sizeof(arr) / sizeof(arr[0]);
     int x = 2;
 
     if(DEBUG) printf("%zu (size of ARR) / %zu (size of ARR first element) = %d (N)\n", sizeof(arr), sizeof(arr[0]), n);
