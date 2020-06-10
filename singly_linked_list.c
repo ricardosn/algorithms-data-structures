@@ -147,13 +147,73 @@ int main() {
 
     struct Node *head = NULL;
 
-    initList(&head);
+    int aux = 0, value = 0;
 
-    printList(head);
+    while(aux >= 0) {
+        // init
+        value = 0;
 
-    printf("\nList length is: %d", listLength(&head));
+        printf("Menu:\n");
+        printf("0 - Init List\n");
+        printf("1 - Push\n");
+        printf("2 - Append\n");
+        printf("3 - Insert After\n");
+        printf("4 - Delete By Key\n");
+        printf("5 - Delete At Position\n");
+        printf("6 - List Lenght\n");
+        printf("7 - Print List\n");
+        printf("Type Anything else to Exit\n");
+        printf("Choose option:\n");
+        scanf("%d", &aux);
 
-    printf("\n");
+        switch (aux) {
+        case 0:
+            initList(&head);
+            break;
+
+        case 1:
+            printf("Choose Value:\n");
+            scanf("%d", &value);
+            push(&head, value);
+            break;
+
+        case 2:
+            printf("Choose Value:\n");
+            scanf("%d", &value);
+            append(&head, value);
+            break;
+
+        case 3:
+            printf("Choose Value:\n");
+            scanf("%d", &value);
+            insertAfter(head->next, 11);
+            break;
+
+        case 4:
+            printf("Choose Value:\n");
+            scanf("%d", &value);
+            deleteByKey(&head, value);
+            break;
+
+        case 5:
+            printf("Choose Value:\n");
+            scanf("%d", &value);
+            deleteAtPosition(&head, value);
+            break;
+
+        case 6:
+            printf("\nList length is: %d\n", listLength(&head));
+            break;
+
+        case 7:
+            printList(head);
+            break;
+        
+        default:
+            aux  = -1;
+            break;
+        }
+    }
 
     return 0;
 
