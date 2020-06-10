@@ -123,27 +123,31 @@ void printList(struct Node *node) {
     }
 }
 
+void initList(struct Node **head_ref) {
+    push(head_ref, 7);
+
+    push(head_ref, 8);
+
+    append(head_ref, 10);
+
+    append(head_ref, 5);
+
+    append(head_ref, 6);
+
+    insertAfter((*head_ref)->next, 11);
+
+    deleteByKey(head_ref, 8);
+
+    deleteByKey(head_ref, 31);
+
+    deleteAtPosition(head_ref, 2);
+}
+
 int main() {
 
     struct Node *head = NULL;
 
-    push(&head, 7);
-
-    push(&head, 8);
-
-    append(&head, 10);
-
-    append(&head, 5);
-
-    append(&head, 6);
-
-    insertAfter(head->next, 11);
-
-    deleteByKey(&head, 8);
-
-    deleteByKey(&head, 31);
-
-    deleteAtPosition(&head, 2);
+    initList(&head);
 
     printList(head);
 
